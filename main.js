@@ -21,7 +21,6 @@ app.use(
 );
 
 // Handle OPTIONS (preflight)
-app.options('/*', cors());
 app.use(cookieParser());
 
 //  MongoDB

@@ -11,7 +11,12 @@ import { TransactionalEmailsApi, SendSmtpEmail } from "@getbrevo/brevo";
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors()); 
+app.use(
+  cors({
+    origin: true, // allowing all
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
 //  MongoDB

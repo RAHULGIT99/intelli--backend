@@ -11,12 +11,17 @@ import { TransactionalEmailsApi, SendSmtpEmail } from "@getbrevo/brevo";
 dotenv.config();
 const app = express();
 app.use(express.json());
+
+// Allow ALL origins and handle preflight requests
 app.use(
   cors({
-    origin: true, // allowing all
-    credentials: true,
+    origin: "*", // allows all origins
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
+
+// Handle OPTIONS (preflight)
+app.options("*", cors());
 app.use(cookieParser());
 
 //  MongoDB
@@ -104,6 +109,12 @@ const authenticateToken = async (req, res, next) => {
     return res.sendStatus(403);
   }
 };
+
+
+app.get("/", (req, res) => {
+  res.json({ message: "Hello" });
+});
+
 
 
 //  Register + otp generation

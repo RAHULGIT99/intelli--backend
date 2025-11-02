@@ -15,8 +15,9 @@ app.use(express.json());
 // Allow ALL origins and handle preflight requests
 app.use(
   cors({
-    origin: "*", // allows all origins
+    origin: ["http://localhost:3000", "https://intelli-frontend.onrender.com"], // allow specific origins
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
   })
 );
 
